@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FitBlueprint — AI Home Gym Designer</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Upload your space. Enter dimensions & goals. Get a personalized home gym blueprint and product recommendations." />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <div class="brand__mark">FB</div>
+        <div class="brand__text">
+          <div class="brand__name">FitBlueprint</div>
+          <div class="brand__tag">Design your ideal home gym with AI</div>
+        </div>
+      </div>
+      <div class="header__cta">
+        <a class="btn btn--ghost" href="#how">How it works</a>
+        <a class="btn" href="#designer">Start design</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <h1>Upload your space.<br/>Build your perfect home gym.</h1>
+          <p class="lead">
+            FitBlueprint turns your room photo, dimensions, goals, and budget into a curated equipment plan —
+            with an easy shopping list and links to buy.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--lg" href="#designer">Design my gym</a>
+            <a class="btn btn--lg btn--ghost" href="#examples">See recommendations</a>
+          </div>
+          <div class="hero__badges">
+            <span class="badge">Yoga</span>
+            <span class="badge">CrossFit</span>
+            <span class="badge">Weights</span>
+            <span class="badge">Cardio</span>
+            <span class="badge">Boxing</span>
+            <span class="badge">Rowing</span>
+          </div>
+
+          <div class="note">
+            <strong>Affiliate disclosure:</strong> As an Amazon Associate, FitBlueprint earns from qualifying purchases.
+          </div>
+        </div>
+
+        <div class="hero__card">
+          <div class="card">
+            <div class="card__title">Fast results</div>
+            <div class="card__desc">Enter your details → Get a plan + shopping list</div>
+            <div class="card__stats">
+              <div class="stat">
+                <div class="stat__num">2–5</div>
+                <div class="stat__label">minutes</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">10+</div>
+                <div class="stat__label">categories</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">1</div>
+                <div class="stat__label">shopping list</div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="mini">
+              <div class="mini__dot"></div>
+              <div>
+                <div class="mini__title">Smart equipment selection</div>
+                <div class="mini__text">Matches gear to goals + space + budget.</div>
+              </div>
+            </div>
+            <div class="mini">
+              <div class="mini__dot"></div>
+              <div>
+                <div class="mini__title">Space-aware footprint</div>
+                <div class="mini__text">Filters out items that won’t fit your room.</div>
+              </div>
+            </div>
+            <div class="mini">
+              <div class="mini__dot"></div>
+              <div>
+                <div class="mini__title">Click-to-buy</div>
+                <div class="mini__text">Affiliate links included for each product.</div>
+              </div>
+            </div>
+
+            <a class="btn btn--full" href="#designer">Start design</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="designer" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Design your gym</h2>
+          <p>Upload a photo, set dimensions, pick training styles, and generate recommendations.</p>
+        </div>
+
+        <div class="grid">
+          <div class="panel">
+            <h3>1) Your space</h3>
+
+            <label class="field">
+              <span class="field__label">Upload a room photo (optional)</span>
+              <input id="roomPhoto" type="file" accept="image/*" />
+              <span class="field__hint">We’ll preview it and use your dimensions for footprint checks.</span>
+            </label>
+
+            <div class="preview" id="photoPreviewWrap" aria-hidden="true">
+              <img id="photoPreview" alt="Room preview" />
+              <div class="preview__meta" id="photoMeta"></div>
+            </div>
+
+            <div class="row">
+              <label class="field">
+                <span class="field__label">Room length (ft)</span>
+                <input id="lenFt" type="number" min="4" step="0.5" value="12" />
+              </label>
+              <label class="field">
+                <span class="field__label">Room width (ft)</span>
+                <input id="widFt" type="number" min="4" step="0.5" value="10" />
+              </label>
+            </div>
+
+            <div class="row">
+              <label class="field">
+                <span class="field__label">Ceiling height (ft)</span>
+                <input id="ceilFt" type="number" min="6" step="0.5" value="8" />
+              </label>
+              <label class="field">
+                <span class="field__label">Floor type</span>
+                <select id="floorType">
+                  <option value="hard">Hard floor (tile/wood)</option>
+                  <option value="carpet">Carpet</option>
+                  <option value="garage">Garage / concrete</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="row">
+              <label class="field">
+                <span class="field__label">Noise sensitivity</span>
+                <select id="noise">
+                  <option value="high">High (apartment/shared walls)</option>
+                  <option value="med" selected>Medium</option>
+                  <option value="low">Low (detached/garage)</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field__label">Storage needs</span>
+                <select id="storage">
+                  <option value="high">High (keep it tidy)</option>
+                  <option value="med" selected>Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>2) Goals & training</h3>
+
+            <div class="chips">
+              <button class="chip" data-goal="weight_loss" type="button">Weight loss</button>
+              <button class="chip" data-goal="strength" type="button">Strength</button>
+              <button class="chip" data-goal="muscle" type="button">Muscle</button>
+              <button class="chip" data-goal="endurance" type="button">Endurance</button>
+              <button class="chip" data-goal="mobility" type="button">Mobility</button>
+              <button class="chip" data-goal="boxing" type="button">Boxing</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="checks">
+              <label class="check"><input type="checkbox" value="yoga" /> Yoga</label>
+              <label class="check"><input type="checkbox" value="crossfit" /> CrossFit</label>
+              <label class="check"><input type="checkbox" value="weights" checked /> Weight training</label>
+              <label class="check"><input type="checkbox" value="cardio" checked /> Cardio</label>
+              <label class="check"><input type="checkbox" value="boxing" /> Boxing</label>
+              <label class="check"><input type="checkbox" value="rowing" /> Rowing</label>
+              <label class="check"><input type="checkbox" value="cycling" /> Cycling</label>
+              <label class="check"><input type="checkbox" value="recovery" /> Recovery</label>
+            </div>
+
+            <div class="divider"></div>
+
+            <label class="field">
+              <span class="field__label">Budget (USD)</span>
+              <input id="budget" type="range" min="200" max="5000" step="50" value="900" />
+              <div class="rangeMeta">
+                <span id="budgetVal">$900</span>
+                <span class="muted">Tip: start low, upgrade later.</span>
+              </div>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Preference</span>
+              <select id="pref">
+                <option value="balanced" selected>Balanced</option>
+                <option value="compact">Compact / minimal footprint</option>
+                <option value="premium">Premium build</option>
+                <option value="budget">Budget-first</option>
+              </select>
+            </label>
+
+            <button id="generate" class="btn btn--full btn--lg" type="button">
+              Generate recommendations
+            </button>
+
+            <div class="tiny muted" style="margin-top:10px">
+              This MVP uses local logic + a starter product catalog. Later we can plug in real-time product search.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples" class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>Your recommended build</h2>
+          <p>Footprint-aware picks, budget-aware bundling, and click-to-buy links.</p>
+        </div>
+
+        <div class="results">
+          <div class="resultCard">
+            <h3>Blueprint summary</h3>
+            <div id="summary" class="summary muted">Fill out the form above and click Generate.</div>
+            <div class="divider"></div>
+            <div class="layout">
+              <div class="layout__box">
+                <div class="layout__title">Suggested zones</div>
+                <ul id="zones" class="list"></ul>
+              </div>
+              <div class="layout__box">
+                <div class="layout__title">Space checks</div>
+                <ul id="checks" class="list"></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="resultCard">
+            <div class="resultHeader">
+              <div>
+                <h3>Shopping list</h3>
+                <div class="muted tiny">Each link includes your Amazon Associate tag.</div>
+              </div>
+              <div class="totals">
+                <div class="total">
+                  <div class="total__label">Items</div>
+                  <div id="count" class="total__val">0</div>
+                </div>
+                <div class="total">
+                  <div class="total__label">Est. total</div>
+                  <div id="total" class="total__val">$0</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tableWrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Footprint (in)</th>
+                    <th>Est. price</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="products"></tbody>
+              </table>
+            </div>
+
+            <div class="divider"></div>
+            <div class="row" style="gap:12px">
+              <button id="copyList" class="btn btn--ghost" type="button">Copy shopping list</button>
+              <button id="download" class="btn" type="button">Download plan (HTML)</button>
+            </div>
+
+            <p class="tiny muted" style="margin-top:10px">
+              Amazon prices change. Your totals are estimates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>How you earn affiliate revenue</h2>
+          <p>Every “Buy on Amazon” button uses your Associate tag. You can add other partners later.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step__num">1</div>
+            <div class="step__body">
+              <div class="step__title">Join Amazon Associates</div>
+              <div class="step__text">Get your Associate ID (looks like <code>fitblueprint-20</code>).</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">2</div>
+            <div class="step__body">
+              <div class="step__title">Add your tag once</div>
+              <div class="step__text">Update <code>AFFILIATE.amazonTag</code> in <code>script.js</code>.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">3</div>
+            <div class="step__body">
+              <div class="step__title">Use real product links</div>
+              <div class="step__text">Replace starter ASINs with your chosen products for best conversion.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Next upgrade:</strong> connect a backend (or Make.com) to pull real-time product options and generate a PDF blueprint automatically.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="muted tiny">
+          © <span id="year"></span> FitBlueprint.fit · As an Amazon Associate we earn from qualifying purchases.
+        </div>
+        <div class="muted tiny">
+          <a href="#" id="openDisclosure">Affiliate Disclosure</a> · <a href="#" id="openPrivacy">Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modals -->
+    <dialog id="modalDisclosure" class="modal">
+      <div class="modal__inner">
+        <h3>Affiliate Disclosure</h3>
+        <p class="muted">
+          FitBlueprint participates in affiliate programs, including Amazon Associates. If you click an affiliate link
+          and purchase a product, we may earn a commission at no additional cost to you.
+        </p>
+        <button class="btn" data-close type="button">Close</button>
+      </div>
+    </dialog>
+
+    <dialog id="modalPrivacy" class="modal">
+      <div class="modal__inner">
+        <h3>Privacy</h3>
+        <p class="muted">
+          This MVP runs in your browser. Your uploaded image stays on your device. If you later connect automation (OpenAI/Make),
+          we’ll add clear consent before sending any data.
+        </p>
+        <button class="btn" data-close type="button">Close</button>
+      </div>
+    </dialog>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
